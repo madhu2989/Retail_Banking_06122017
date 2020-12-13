@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "print";
+    Layout = "~/Views/Shared/layoutafteroperation.cshtml";
+}
+
+<h2>print</h2>
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input[name='opt']").click(function () {
+            if ($("#chkYes").is(":checked")) {
+                $("#dvPassport").show();
+                $("#dvPassport1").hide();
+
+
+            } else {
+                $("#dvPassport1").show();
+                $("#dvPassport").hide();
+            }
+        });
+    });
+
+
+</script>
+
+<style>
+    #LeftDiv {
+        display: inline-block;
+    }
+
+    #RightDiv {
+        display: inline-block;
+    }
+</style>
+<h3 style="text-align:center;font-weight:bolder">Welcome @ViewBag.user_name !</h3>
+<h3 style="text-align:center;font-weight:bolder;font-size:x-large">Mini Statement Details</h3>
+<hr />
+<a href="javascript:void(0);" onclick="history.go(-1);">Back</a>
+@using (Html.BeginForm("PrintStatement", "Cashier", FormMethod.Get))
+{
+
+    <div class="form-horizontal" style="width:800px;margin-top:10px; margin-left:450px;">
+
+        @*<a href="javascript:void(0);" onclick="history.go(-1);">Back</a>*@
+        <div>
+            <label>Enter Account Id:</label>  @Html.TextBox("accountid")
+        </div>
+        <br />
+
+        <br />
+
+        <label for="chkYes">
+            <input type="radio" id="chkYes" name="opt" />
+            Statement by number of transactions
+        </label>
+
+        <label for="chkNo">
+            <input type="radio" id="chkNo" name="opt" />
+            Statement by a date range
+        </label>
+
+        <div id="dvPassport" style="display: none">
+            @Html.DropDownList("NumberofTransactions", new List<SelectListItem>
+                {
+                    new SelectListItem{ Text="5", Value = "5" },
+                    new SelectListItem{ Text="10", Value = "10" },
+                    new SelectListItem{ Text="20", Value = "20" },
+                    new SelectListItem{ Text="50", Value = "50" },
+                    new SelectListItem{ Text="100", Value = "100" },
+                 })
+            <input id="Button1" type="submit" value="Get Statement" class="btn btn-info" />
+
+        </div>
+
+
+        <div id="dvPassport1" style="display: none">
+            <div>
+                <label>Enter the start date</label><input type="date" name="startdate" />
+            </div>
+            <div>
+                <label>Enter the end date</label><input type="date" name="enddate" />
+            </div>
+            <input id="Button1" type="submit" value="Get Statement" class="btn btn-info" />
+        </div>
+    </div>
+
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+

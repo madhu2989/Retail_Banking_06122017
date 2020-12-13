@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Retail Banking</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+
+@RenderBody()
+<body style="background-color:white;background-image:url(http://www.healingandtransformation.com/wp-content/uploads/2014/05/bigstock-Sky-and-clouds-background-26443844.jpg);background-size:cover;background-repeat:no-repeat">
+<nav class="navbar navbar-default " style="margin-top:-50px;margin-left:0px;background-color:black;">
+    @*<div class="container">*@
+    <div class="navbar-header" style="background-color:black">
+
+        <img src=" ~/Content/logo-edited.jpg" alt="online banking " ;width="80" ; height="80" ; style="margin-top:5px;margin-left:5px">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right" style="margin-left:850px;color:white">
+
+                <li style="color:black;font-size:20px">
+                    @Html.ActionLink("Home", "frontpage", "frontpage")
+                </li>
+                <li style="text-emphasis-color:black;font-size:20px">@Html.ActionLink("Faq", "faqbank", "faqbank")</li>
+                <li style="text-emphasis-color:black;font-size:20px">@Html.ActionLink("Contact", "contactbank", "contactbank") </li>
+                <li style="text-emphasis-color:black;font-size:20px">
+                    @Html.ActionLink("Login", "login", "login")
+                </li>
+                @*<li style="background-color:White;font-size:20px"><a href="~/Views/Shared/loginlayout.cshtml">Login</a></li>*@
+            </ul>
+        </div>
+        <div style="margin-top:-130px;margin-left:150px">
+
+            <h1 style="color:white">STANDARD BANK</h1>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<div id="about" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 style="color:antiquewhite;margin-top:90px">
+                About Standard Bank
+            </h2>
+            <h4 style="margin-left:20px;align-items:center;margin-top:100px;color:white">
+
+                bank is a financial institution that accepts deposits from the public and creates credit.Lending activities can be performed either directly or indirectly through capital markets. Due to their 
+                importance in the financial stability of a country, banks are highly regulated in most countries. Most nations have institutionalized a system known as fractional reserve banking under which banks. 
+                In addition to other regulations intended to ensure liquidity, banks are generally subject to minimum capital requirements based on an international set of capital standards, known as the Basel Accords.
+
+                 the Berenbergs and the Rothschilds  – have played a central role over many centuries. The oldest existing retail bank is Banca Monte dei Paschi di Siena, while the oldest existing merchant bank is Berenberg Bank.
+            </h4>
+        </div>
+        <div class="col-sm-4">
+         
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bg-grey">
+
+        <div class="col-sm-4">
+      
+        </div>
+        <div class="col-sm-8">
+          
+    
+    </div>
+</div>
+</html>

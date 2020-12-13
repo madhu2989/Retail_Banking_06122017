@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Retail_Banking_Group2.Models.sp_printstatement_group2_Result>
+
+@{
+    ViewBag.Title = "PrintStatement";
+    Layout = "~/Views/Shared/layoutafteroperation.cshtml";
+}
+
+<h2 style="text-align:center;color:navy">Transaction Details</h2>
+
+
+<div id="id1">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Transaction Id:")
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.AccountId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AccountType)
+                </th>*@
+            <th>
+                @Html.DisplayName("Type Of Transaction ")
+            </th>
+            <th>
+                @Html.DisplayName("Amount")
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.beforebalance)
+                </th*@>
+            <th>
+                @Html.DisplayName("After Balance")
+            </th>
+            <th>
+                @Html.DisplayName("Date Of Transaction")
+            </th>
+            <th></th>
+        </tr>
+        @{
+            int i = 0;
+            foreach (var item in Model)
+            {
+                ++i;
+                <tr>
+
+                    <td>@i</td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.transactionid)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.AccountId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccountType)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.typeoftransaction)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.amount)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.beforebalance)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.afterbalance)
+                    </td>
+                    <td>
+                        @Convert.ToString(string.Format("{0:dd/mm/yyyy}", item.dateoftransaction))
+                    </td>
+                    @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>*@
+
+                </tr>
+                
+
+            }}
+        <tr>
+            <td>
+                <input id="printdiv" type="submit" value="Print" onclick="printcontent('id1')" class="btn btn-primary" />
+
+            </td>
+        </tr>
+    </table>
+</div>
+<script>
+    function printcontent(el) {
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printcontent;
+        window.print();
+        document.body.innerHTML = restorepage;
+    }
+</script>

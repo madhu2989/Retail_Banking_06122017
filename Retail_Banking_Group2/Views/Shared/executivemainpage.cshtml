@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+ 
+    <body style="background-color:white;background-image:url(http://www.healingandtransformation.com/wp-content/uploads/2014/05/bigstock-Sky-and-clouds-background-26443844.jpg);background-size:cover;background-repeat:no-repeat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .navbar {
+                overflow: hidden;
+                background-color: #333;
+                font-family: Arial;
+
+            }
+
+                .navbar a {
+                    float: left;
+                    font-size: 16px;
+                    color: white;
+                    text-align: center; 
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+
+            .dropdown {
+                float: left;
+                overflow: hidden;
+            }
+
+                .dropdown .dropbtn {
+                    font-size: 16px;
+                    border: none;
+                    outline: none;
+                    color: white;
+                    padding: 14px 16px;
+                    background-color: inherit;
+                }
+
+                .navbar a:hover, .dropdown:hover .dropbtn {
+                    background-color: blue;
+                }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+                .dropdown-content a {
+                    float: initial;
+                    color: black;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    text-align: left;
+                }
+
+                    /*.dropdown-content a:hover {
+                        background-color: #ddd;
+                    }*/
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+        </style>
+</head>
+@RenderBody()
+<body>
+
+    <div class="navbar">
+        <font style="margin-left:10px;margin-left:400px;font-size:50px;color:white;font-family:'Sitka Subheading'"> STANDARD BANK</font>
+    <div class="tab-content">
+        <a style="margin-left:600px;font-size:20px">
+            @Html.ActionLink("Home", "customerexecutive", "executivecustomer")
+        </a>
+</div>
+
+        @*<a href="#news">News</a>*@
+
+        <div class="dropdown" style="margin-left:-15px">
+            <button class="dropbtn">
+                Customer management
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a style="background-color:white;font-size:20px">
+                    @Html.ActionLink("Create Customer", "AddCustomer", "customer")
+                </a>
+                <a style="background-color:white;font-size:20px">
+                    @Html.ActionLink("View Customer", "ListCustomer", "customer")
+                </a>
+                <a style="background-color:white;font-size:20px">
+                    @Html.ActionLink("Edit Customer", "editpage", "customer")
+                </a>
+                <a style="background-color:white;font-size:20px">
+                    @Html.ActionLink("Delete Customer", "deletepage", "customer")
+                </a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                Account management
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a style=";font-size:20px">
+                    @Html.ActionLink("Create Account", "addAccountlist", "customer")
+                <a/>
+                    <a style=";font-size:20px">
+                        @Html.ActionLink("View Account details", "listofaccounts", "customer")
+                        <a />
+                       
+</div>
+        </div>
+        <a style="font-size:20px">
+            @Html.ActionLink("Logout", "logout", "login")
+        </a>
+    </div>
+    <div style="margin-top:10px;margin-left:500px">
+        <img src="~/Content/newimage2.jpg" alt="online banking" width="400" height="400">
+    </div>
+    <footer style="margin-left:0px;margin-top:0px;background-color:black;margin-bottom:0px;">
+
+        <div style="margin-left:50px;font-size:larger">
+            <a href="#"><span class="label label-info">Branch Details</span></a>
+            <a href="#"><span class="label label-info">IFSC Codes</span></a>
+            <a href="#"><span class="label label-info">Credit cards</span></a>
+            <a href="#"><span class="label label-info">Interest rates</span></a>
+            @*| <i class="icon-user"></i> <a href="#">Admin</a>*@
+            <div style="margin-top:10px">
+                <i class="icon-share"></i> <a href="#"> <h2 style="margin-left:500px;color:white;margin-top:-25px">Contact us 24*7 on 08008-88558855</h2></a>
+                <h3 style="color:white">copyright *standartbanking.com Group_2</h3>
+            </div>
+            </h2>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "loginlayout";
+}
+
+<h1 style="text-align:center">STANDARD BANK</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - STANDARD BANK</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body style="background-image:url('https://i.pinimg.com/originals/c7/d9/e9/c7d9e976b4df9af7771decd27559282f.jpg')">
+
+    <div class="navbar">
+        <font style="margin-left:10px;margin-left:400px;font-size:50px;color:white;font-family:'Sitka Subheading'"> STANDARD BANK</font>
+        <div class="tab-content">
+            <a style="margin-left:600px;font-size:20px">
+                @Html.ActionLink("Home", "customerexecutive", "executivecustomer")
+            </a>
+        </div>
+
+        @*<a href="#news">News</a>*@
+
+        <div class="dropdown" style="margin-left:-15px">
+            <button class="dropbtn">
+                Customer management
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a style="background-color:white;font-size:20px">
+                    @Html.ActionLink("Create Customer", "AddCustomer", "customer")
+                </a>
+                <a style="background-color:white;font-size:20px">
+                    @Html.ActionLink("View Customer", "ListCustomer", "customer")
+                </a>
+                <a style="background-color:white;font-size:20px">
+                    @Html.ActionLink("Edit Customer", "editpage", "customer")
+                </a>
+                <a style="background-color:white;font-size:20px">
+                    @Html.ActionLink("Delete Customer", "deletepage", "customer")
+                </a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                Account management
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a style=";font-size:20px">
+                    @Html.ActionLink("Create Account", "addAccountlist", "customer")
+                    <a />
+                    <a href="#">Delete Account</a>
+                    @*<a href="#">Link 3</a>*@
+            </div>
+        </div>
+        <a style="font-size:20px">
+            @Html.ActionLink("Logout", "logout", "login")
+        </a>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p> Bank with us to save your future</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

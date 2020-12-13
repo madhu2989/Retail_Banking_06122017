@@ -1,0 +1,234 @@
+﻿@model Retail_Banking_Group2.Models.CustomerTable_group2
+
+@{
+    ViewBag.Title = "AddCustomer";
+     Layout = "~/Views/Shared/layoutafterexecutive.cshtml";
+}
+<script src="~/Models/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "/customer/GetStates",
+            datatype: "Json",
+            success: function (data) {
+                $.each(data, function (index, value) {
+                    $('#dropdownState').append('<option value="' + value.stateid + '">' + value.statename + '</option>');
+                });
+            }
+        });
+
+        $('#dropdownState').change(function () {
+
+            $('#dropdownCity').empty();
+
+            $.ajax({
+                type: "POST",
+                url: "/customer/GetCitiesByStateId",
+                datatype: "Json",
+                data: { stateid: $('#dropdownState').val() },
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $('#dropdownCity').append('<option value="' + value.cityid + '">' + value.cityname + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
+<h2 style="text-align:center;color:navy">Create Customer</h2>
+@*@TempData["Show"]*@
+
+<hr/>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @*<div style="margin-left:0px;font-size:20px;font-variant-caps">*@
+    <a href="javascript:void(0);" onclick="history.go(-1);">Back</a>
+    <div>
+        @*<style>
+             input {
+                 margin-left:5px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                display:inline-block;
+                *display: inline;     /* for IE7*/
+                zoom:1;              /* for IE7*/
+                vertical-align:middle;
+                margin-left:5px
+            }
+
+            label {
+                display:inline-block;
+                *display: inline;     /* for IE7*/
+                zoom:1;              /* for IE7*/
+                float: left;
+                padding-top: 10px;
+                text-align: left;
+                width: 150px;
+            }
+            }
+                    </style>*@
+        <div style="margin-top:10px;margin-left:200px">
+            <div class="form-horizontal" style="margin-left:300px">
+                @*<h4>CustomerTable_group2</h4>*@
+                <div style="font-family:Calibri;font-size:30px">
+                   <h4 style="text-align:initial; color:blue">
+                       @ViewBag.message
+                    </h4> 
+                    
+            </div>
+           
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.CustomerID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CustomerID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            @*<style>
+                    .col-md-10 {
+                        text-align: center;
+                    }
+
+                    .form-group {
+                        margin-left: 200px;
+                    }
+                </style>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AadhaarID, "Aadhaar Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*<div class="col-md-1 col-md-push-0" style="color:red;margin-left:100px;margin-top:10px;">*</div>*@
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.EditorFor(model => model.AadhaarID, new { htmlAttributes = new { @class = "form-control" },maxlength="12" })
+                    @Html.ValidationMessageFor(model => model.AadhaarID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:30px;">
+                @Html.LabelFor(model => model.CustomerName, "Customer Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                @*<div class="col-md-1 col-md-push-0" style="color:red;" align="left">*</div>*@
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" }, maxlength = "20" })
+                    @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:30px;">
+                @Html.LabelFor(model => model.Dob, "Date Of Birth", htmlAttributes: new { @class = "control-label col-md-2" })
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.EditorFor(model => model.Dob, new { htmlAttributes = new { @class = "form-control" } })
+                    <div> @TempData["Show"]</div>
+                    @Html.ValidationMessageFor(model => model.Dob, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:30px;">
+                @Html.LabelFor(model => model.AddressLine1, "Address Line1", htmlAttributes: new { @class = "control-label col-md-2" })
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control" }, @MaxLength = "30" })
+                    @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:30px;">
+                @Html.LabelFor(model => model.AddressLine2, "Address Line2", htmlAttributes: new { @class = "control-label col-md-2" })
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control" },@MaxLength="30"  })
+                    @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <style>
+                select {
+                    height: 25px;
+                    width: 300px;
+                }
+            </style>
+            <div class="form-group" style="margin-top:30px;">
+                @Html.LabelFor(model => model.State, "State", htmlAttributes: new { @class = "control-label col-md-2 required" })
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.DropDownList("dropdownState", new SelectList(string.Empty, "Value", "Text"), "Select State",
+                    new { @style = "width:250px;" })
+                    @*@Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+            <style>
+                select {
+                    height: 25px;
+                    width: 300px;
+                }
+            </style>
+            <div class="form-group" style="margin-top:30px;">
+                @Html.LabelFor(model => model.City, "City", htmlAttributes: new { @class = "control-label col-md-2" })
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.DropDownList("dropdownCity", new SelectList(string.Empty, "Value", "Text"), "Select City",
+         new { @style = "width:250px;" })
+                    @*@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:30px;">
+                @Html.LabelFor(model => model.Contact, "Contact Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" }, @MaxLength="10" })
+                    @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:30px;">
+                @Html.LabelFor(model => model.Email, "Email ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <h2 style="margin-left:110px;margin-top:-20px;color:red">*</h2>
+                <div class="col-md-9" style="margin-left:180px;margin-top:-43px;">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.NoofAccounts, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NoofAccounts, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoofAccounts, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.CustomerStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CustomerStatus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CustomerStatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+            <div><h6 style="text-align:center;color:red; font:normal;font-family:'Comic Sans MS'">(*)All Fields Are Mandatory</h6></div>
+            <div class="form-group" style="margin-left:200px;margin-top:20px">
+                <div class="col-md-offset-2 col-md-10">
+                    <input  type="submit" value="ADD" class="btn btn-success" />
+                    <input type="reset" value="Reset" class="btn-primary" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "ListCustomer")*@
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,1064 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AHD16_AMS69_Group2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accountdropdown_group2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Accounttype" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="addaccount_group2">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="bigint" />
+          <Property Name="AccountType" Type="int" />
+          <Property Name="DepositAmount" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="AccountStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="city_group2">
+          <Key>
+            <PropertyRef Name="cityid" />
+          </Key>
+          <Property Name="cityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stateid" Type="int" />
+          <Property Name="cityname" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="CustomerTable_group2">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AadhaarID" Type="bigint" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="AddressLine1" Type="varchar" MaxLength="200" />
+          <Property Name="AddressLine2" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="int" />
+          <Property Name="City" Type="int" />
+          <Property Name="Contact" Type="bigint" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="NoofAccounts" Type="int" />
+          <Property Name="CustomerStatus" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="loginexecutive_group2">
+          <Key>
+            <PropertyRef Name="loginid" />
+          </Key>
+          <Property Name="loginid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="20" />
+          <Property Name="userpassword" Type="varchar" MaxLength="20" />
+          <Property Name="userroleid" Type="int" />
+        </EntityType>
+        <EntityType Name="state_group2">
+          <Key>
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="stateid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="statename" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="transactiontable_group2">
+          <Key>
+            <PropertyRef Name="transactionid" />
+          </Key>
+          <Property Name="transactionid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" />
+          <Property Name="AccountType" Type="varchar" MaxLength="50" />
+          <Property Name="typeoftransaction" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="money" />
+          <Property Name="beforebalance" Type="money" />
+          <Property Name="afterbalance" Type="money" />
+          <Property Name="dateoftransaction" Type="date" />
+        </EntityType>
+        <Association Name="FK__addaccoun__Accou__7B264821">
+          <End Role="accountdropdown_group2" Type="Self.accountdropdown_group2" Multiplicity="0..1" />
+          <End Role="addaccount_group2" Type="Self.addaccount_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountdropdown_group2">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="addaccount_group2">
+              <PropertyRef Name="AccountType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__addaccoun__Custo__7A3223E8">
+          <End Role="CustomerTable_group2" Type="Self.CustomerTable_group2" Multiplicity="0..1" />
+          <End Role="addaccount_group2" Type="Self.addaccount_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerTable_group2">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="addaccount_group2">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerT__State__73852659">
+          <End Role="state_group2" Type="Self.state_group2" Multiplicity="0..1" />
+          <End Role="CustomerTable_group2" Type="Self.CustomerTable_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_group2">
+              <PropertyRef Name="stateid" />
+            </Principal>
+            <Dependent Role="CustomerTable_group2">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerTa__City__74794A92">
+          <End Role="city_group2" Type="Self.city_group2" Multiplicity="0..1" />
+          <End Role="CustomerTable_group2" Type="Self.CustomerTable_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city_group2">
+              <PropertyRef Name="cityid" />
+            </Principal>
+            <Dependent Role="CustomerTable_group2">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_city_group2_state_group2">
+          <End Role="state_group2" Type="Self.state_group2" Multiplicity="0..1" />
+          <End Role="city_group2" Type="Self.city_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_group2">
+              <PropertyRef Name="stateid" />
+            </Principal>
+            <Dependent Role="city_group2">
+              <PropertyRef Name="stateid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="cashierViewAccountbyId_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="DepositAmount_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+          <Parameter Name="AccountType" Type="varchar" Mode="In" />
+          <Parameter Name="TransactionType" Type="varchar" Mode="In" />
+          <Parameter Name="amount" Type="money" Mode="In" />
+          <Parameter Name="beforebalance" Type="money" Mode="In" />
+          <Parameter Name="latestbalance" Type="money" Mode="InOut" />
+        </Function>
+        <Function Name="sp_accountTypecheck_gropu2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="customerid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_addaccount_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+          <Parameter Name="CustomerID" Type="bigint" Mode="In" />
+          <Parameter Name="AccountType" Type="int" Mode="In" />
+          <Parameter Name="DepositAmount" Type="numeric" Mode="In" />
+          <Parameter Name="Accountidout" Type="bigint" Mode="InOut" />
+        </Function>
+        <Function Name="sp_checkAccount_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="customerID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_checknoofAccounts_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_city_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stateid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_CustomerTable_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="bigint" Mode="In" />
+          <Parameter Name="AadhaarID" Type="bigint" Mode="In" />
+          <Parameter Name="CustomerName" Type="varchar" Mode="In" />
+          <Parameter Name="Dob" Type="date" Mode="In" />
+          <Parameter Name="AddressLine1" Type="varchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="int" Mode="In" />
+          <Parameter Name="City" Type="int" Mode="In" />
+          <Parameter Name="Contact" Type="bigint" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="customeridout" Type="bigint" Mode="InOut" />
+        </Function>
+        <Function Name="sp_deleteAccount_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+          <Parameter Name="CustomerID" Type="bigint" Mode="In" />
+          <Parameter Name="DepositAmount" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="sp_deletebyid_CustomerTable_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_deletecustomer_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_Deposit_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+          <Parameter Name="AccountType" Type="varchar" Mode="In" />
+          <Parameter Name="TransactionType" Type="varchar" Mode="In" />
+          <Parameter Name="amount" Type="money" Mode="In" />
+          <Parameter Name="beforebalance" Type="money" Mode="In" />
+          <Parameter Name="latestbalance" Type="money" Mode="InOut" />
+        </Function>
+        <Function Name="sp_forchecknoofaccountbycusId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_forcheckwhichaccounttype" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_loginexecutive_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_printstatement_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountid" Type="bigint" Mode="In" />
+          <Parameter Name="nooftransactions" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_selectCustomerAccountIdforTransfer_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cus_id" Type="bigint" Mode="In" />
+          <Parameter Name="acc_id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_state_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_statementbyDate_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="EndDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_Totaltransactions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerId" Type="bigint" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_transfer_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="acc_idS" Type="bigint" Mode="In" />
+          <Parameter Name="acc_idD" Type="bigint" Mode="In" />
+          <Parameter Name="acc_typeS" Type="int" Mode="In" />
+          <Parameter Name="acc_typeD" Type="int" Mode="In" />
+          <Parameter Name="pre_balS" Type="money" Mode="In" />
+          <Parameter Name="pre_balD" Type="money" Mode="In" />
+          <Parameter Name="amount" Type="money" Mode="In" />
+          <Parameter Name="up_balS" Type="money" Mode="InOut" />
+          <Parameter Name="up_balD" Type="money" Mode="InOut" />
+        </Function>
+        <Function Name="sp_view_addaccount_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="customerid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_view_CustomerTable_CONCAT_GROUP2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_view_CustomerTable_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_viewAccount_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_viewaccountnameinlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_viewaccounttablewithstatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_viewbyAccountID_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accountid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_viewbyid_CustomerTable_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CustomerID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="sp_viewCashier_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_WithdrawAmount_group2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="AccountId" Type="bigint" Mode="In" />
+          <Parameter Name="AccountType" Type="varchar" Mode="In" />
+          <Parameter Name="TransactionType" Type="varchar" Mode="In" />
+          <Parameter Name="amount" Type="money" Mode="In" />
+          <Parameter Name="beforebalance" Type="money" Mode="In" />
+          <Parameter Name="latestbalance" Type="money" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="AHD16_AMS69_Group2ModelStoreContainer">
+          <EntitySet Name="accountdropdown_group2" EntityType="Self.accountdropdown_group2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="addaccount_group2" EntityType="Self.addaccount_group2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="city_group2" EntityType="Self.city_group2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerTable_group2" EntityType="Self.CustomerTable_group2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loginexecutive_group2" EntityType="Self.loginexecutive_group2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="state_group2" EntityType="Self.state_group2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transactiontable_group2" EntityType="Self.transactiontable_group2" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__addaccoun__Accou__7B264821" Association="Self.FK__addaccoun__Accou__7B264821">
+            <End Role="accountdropdown_group2" EntitySet="accountdropdown_group2" />
+            <End Role="addaccount_group2" EntitySet="addaccount_group2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__addaccoun__Custo__7A3223E8" Association="Self.FK__addaccoun__Custo__7A3223E8">
+            <End Role="CustomerTable_group2" EntitySet="CustomerTable_group2" />
+            <End Role="addaccount_group2" EntitySet="addaccount_group2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerT__State__73852659" Association="Self.FK__CustomerT__State__73852659">
+            <End Role="state_group2" EntitySet="state_group2" />
+            <End Role="CustomerTable_group2" EntitySet="CustomerTable_group2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerTa__City__74794A92" Association="Self.FK__CustomerTa__City__74794A92">
+            <End Role="city_group2" EntitySet="city_group2" />
+            <End Role="CustomerTable_group2" EntitySet="CustomerTable_group2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_city_group2_state_group2" Association="Self.FK_city_group2_state_group2">
+            <End Role="state_group2" EntitySet="state_group2" />
+            <End Role="city_group2" EntitySet="city_group2" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AHD16_AMS69_Group2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="city_group2">
+          <Key>
+            <PropertyRef Name="cityid" />
+          </Key>
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="stateid" Type="Int32" />
+          <Property Name="cityname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="state_group2" Relationship="Self.FK__city_grou__state__1A14E395" FromRole="city_group2" ToRole="state_group2" />
+          <NavigationProperty Name="CustomerTable_group2" Relationship="Self.FK__CustomerTa__City__0C85DE4D" FromRole="city_group2" ToRole="CustomerTable_group2" />
+        </EntityType>
+        <EntityType Name="CustomerTable_group2">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AadhaarID" Type="Int64" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="AddressLine1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="City" Type="Int32" />
+          <Property Name="Contact" Type="Int64" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NoofAccounts" Type="Int32" />
+          <Property Name="CustomerStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="city_group2" Relationship="Self.FK__CustomerTa__City__0C85DE4D" FromRole="CustomerTable_group2" ToRole="city_group2" />
+          <NavigationProperty Name="state_group2" Relationship="Self.FK__CustomerT__State__0B91BA14" FromRole="CustomerTable_group2" ToRole="state_group2" />
+          <NavigationProperty Name="addaccount_group2" Relationship="AHD16_AMS69_Group2Model.FK__addaccoun__Custo__2B0A656D" FromRole="CustomerTable_group2" ToRole="addaccount_group2" />
+        </EntityType>
+        <EntityType Name="loginexecutive_group2">
+          <Key>
+            <PropertyRef Name="loginid" />
+          </Key>
+          <Property Name="loginid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="userpassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="userroleid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="state_group2">
+          <Key>
+            <PropertyRef Name="stateid" />
+          </Key>
+          <Property Name="stateid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statename" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="city_group2" Relationship="Self.FK__city_grou__state__1A14E395" FromRole="state_group2" ToRole="city_group2" />
+          <NavigationProperty Name="CustomerTable_group2" Relationship="Self.FK__CustomerT__State__0B91BA14" FromRole="state_group2" ToRole="CustomerTable_group2" />
+        </EntityType>
+        <Association Name="FK__city_grou__state__1A14E395">
+          <End Role="state_group2" Type="Self.state_group2" Multiplicity="0..1" />
+          <End Role="city_group2" Type="Self.city_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_group2">
+              <PropertyRef Name="stateid" />
+            </Principal>
+            <Dependent Role="city_group2">
+              <PropertyRef Name="stateid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerTa__City__0C85DE4D">
+          <End Role="city_group2" Type="Self.city_group2" Multiplicity="0..1" />
+          <End Role="CustomerTable_group2" Type="Self.CustomerTable_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="city_group2">
+              <PropertyRef Name="cityid" />
+            </Principal>
+            <Dependent Role="CustomerTable_group2">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerT__State__0B91BA14">
+          <End Role="state_group2" Type="Self.state_group2" Multiplicity="0..1" />
+          <End Role="CustomerTable_group2" Type="Self.CustomerTable_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state_group2">
+              <PropertyRef Name="stateid" />
+            </Principal>
+            <Dependent Role="CustomerTable_group2">
+              <PropertyRef Name="State" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bankEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="city_group2" EntityType="Self.city_group2" />
+          <EntitySet Name="CustomerTable_group2" EntityType="Self.CustomerTable_group2" />
+          <EntitySet Name="loginexecutive_group2" EntityType="Self.loginexecutive_group2" />
+          <EntitySet Name="state_group2" EntityType="Self.state_group2" />
+          <AssociationSet Name="FK__city_grou__state__1A14E395" Association="Self.FK__city_grou__state__1A14E395">
+            <End Role="state_group2" EntitySet="state_group2" />
+            <End Role="city_group2" EntitySet="city_group2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerTa__City__0C85DE4D" Association="Self.FK__CustomerTa__City__0C85DE4D">
+            <End Role="city_group2" EntitySet="city_group2" />
+            <End Role="CustomerTable_group2" EntitySet="CustomerTable_group2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerT__State__0B91BA14" Association="Self.FK__CustomerT__State__0B91BA14">
+            <End Role="state_group2" EntitySet="state_group2" />
+            <End Role="CustomerTable_group2" EntitySet="CustomerTable_group2" />
+          </AssociationSet>
+          <FunctionImport Name="sp_CustomerTable_group2">
+            <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+            <Parameter Name="AadhaarID" Mode="In" Type="Int64" />
+            <Parameter Name="CustomerName" Mode="In" Type="String" />
+            <Parameter Name="Dob" Mode="In" Type="DateTime" />
+            <Parameter Name="AddressLine1" Mode="In" Type="String" />
+            <Parameter Name="AddressLine2" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="Int32" />
+            <Parameter Name="City" Mode="In" Type="Int32" />
+            <Parameter Name="Contact" Mode="In" Type="Int64" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="customeridout" Mode="InOut" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_loginexecutive_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_loginexecutive_group2_Result)">
+          <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_state_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_state_group2_Result)" />
+          <FunctionImport Name="sp_view_CustomerTable_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_view_CustomerTable_group2_Result)" />
+          <FunctionImport Name="sp_viewbyid_CustomerTable_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_viewbyid_CustomerTable_group2_Result)">
+          <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deletecustomer_group2">
+          <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deletebyid_CustomerTable_group2">
+          <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="accountdropdown_group2" EntityType="AHD16_AMS69_Group2Model.accountdropdown_group2" />
+          <EntitySet Name="addaccount_group2" EntityType="AHD16_AMS69_Group2Model.addaccount_group2" />
+          <AssociationSet Name="FK__addaccoun__Accou__2BFE89A6" Association="AHD16_AMS69_Group2Model.FK__addaccoun__Accou__2BFE89A6">
+            <End Role="accountdropdown_group2" EntitySet="accountdropdown_group2" />
+            <End Role="addaccount_group2" EntitySet="addaccount_group2" />
+          </AssociationSet>
+          <AssociationSet Name="FK__addaccoun__Custo__2B0A656D" Association="AHD16_AMS69_Group2Model.FK__addaccoun__Custo__2B0A656D">
+            <End Role="CustomerTable_group2" EntitySet="CustomerTable_group2" />
+            <End Role="addaccount_group2" EntitySet="addaccount_group2" />
+          </AssociationSet>
+          <FunctionImport Name="sp_addaccount_group2">
+            <Parameter Name="AccountId" Mode="In" Type="Int64" />
+            <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+            <Parameter Name="AccountType" Mode="In" Type="Int32" />
+            <Parameter Name="DepositAmount" Mode="In" Type="Decimal" />
+            <Parameter Name="Accountidout" Mode="InOut" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_view_addaccount_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_view_addaccount_group2_Result)">
+          <Parameter Name="customerid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_viewAccount_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_viewAccount_group2_Result)" />
+          <FunctionImport Name="sp_accountTypecheck_gropu2" ReturnType="Collection(Int32)">
+          <Parameter Name="customerid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_checkAccount_group2" ReturnType="Collection(Int32)">
+          <Parameter Name="customerID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_checknoofAccounts_group2" ReturnType="Collection(Int32)">
+          <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="transactiontable_group2" EntityType="AHD16_AMS69_Group2Model.transactiontable_group2" />
+          <AssociationSet Name="FK__transacti__Accou__40058253" Association="AHD16_AMS69_Group2Model.FK__transacti__Accou__40058253">
+            <End Role="addaccount_group2" EntitySet="addaccount_group2" />
+            <End Role="transactiontable_group2" EntitySet="transactiontable_group2" />
+          </AssociationSet>
+          <FunctionImport Name="sp_viewCashier_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_viewCashier_group2_Result)" />
+          <FunctionImport Name="cashierViewAccountbyId_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.cashierViewAccountbyId_group2_Result)">
+          <Parameter Name="acc_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="DepositAmount_group2">
+            <Parameter Name="AccountId" Mode="In" Type="Int64" />
+            <Parameter Name="AccountType" Mode="In" Type="String" />
+            <Parameter Name="TransactionType" Mode="In" Type="String" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+            <Parameter Name="beforebalance" Mode="In" Type="Decimal" />
+            <Parameter Name="latestbalance" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Totaltransactions" ReturnType="Collection(Int32)">
+            <Parameter Name="CustomerId" Mode="In" Type="Int64" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_WithdrawAmount_group2">
+            <Parameter Name="AccountId" Mode="In" Type="Int64" />
+            <Parameter Name="AccountType" Mode="In" Type="String" />
+            <Parameter Name="TransactionType" Mode="In" Type="String" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+            <Parameter Name="beforebalance" Mode="In" Type="Decimal" />
+            <Parameter Name="latestbalance" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Deposit_group2">
+            <Parameter Name="AccountId" Mode="In" Type="Int64" />
+            <Parameter Name="AccountType" Mode="In" Type="String" />
+            <Parameter Name="TransactionType" Mode="In" Type="String" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+            <Parameter Name="beforebalance" Mode="In" Type="Decimal" />
+            <Parameter Name="latestbalance" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deleteAccount_group2">
+            <Parameter Name="AccountId" Mode="In" Type="Int64" />
+            <Parameter Name="CustomerID" Mode="In" Type="Int64" />
+            <Parameter Name="DepositAmount" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_viewbyAccountID_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_viewbyAccountID_group2_Result)">
+          <Parameter Name="accountid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_forchecknoofaccountbycusId" ReturnType="Collection(Int32)">
+          <Parameter Name="CustomerId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_forcheckwhichaccounttype" ReturnType="Collection(Int32)">
+          <Parameter Name="AccountId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_transfer_group2">
+            <Parameter Name="acc_idS" Mode="In" Type="Int64" />
+            <Parameter Name="acc_idD" Mode="In" Type="Int64" />
+            <Parameter Name="acc_typeS" Mode="In" Type="Int32" />
+            <Parameter Name="acc_typeD" Mode="In" Type="Int32" />
+            <Parameter Name="pre_balS" Mode="In" Type="Decimal" />
+            <Parameter Name="pre_balD" Mode="In" Type="Decimal" />
+            <Parameter Name="amount" Mode="In" Type="Decimal" />
+            <Parameter Name="up_balS" Mode="InOut" Type="Decimal" />
+            <Parameter Name="up_balD" Mode="InOut" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_selectCustomerAccountIdforTransfer_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_selectCustomerAccountIdforTransfer_group2_Result)">
+            <Parameter Name="cus_id" Mode="In" Type="Int64" />
+            <Parameter Name="acc_id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="sp_city_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_city_group2_Result)">
+          <Parameter Name="stateid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_printstatement_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_printstatement_group2_Result)">
+            <Parameter Name="accountid" Mode="In" Type="Int64" />
+            <Parameter Name="nooftransactions" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_statementbyDate_group2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_statementbyDate_group2_Result)">
+            <Parameter Name="AccountId" Mode="In" Type="Int64" />
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_view_CustomerTable_CONCAT_GROUP2" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_view_CustomerTable_CONCAT_GROUP2_Result1)" />
+          <FunctionImport Name="sp_viewaccounttablewithstatus" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_viewaccounttablewithstatus_Result)" />
+          <FunctionImport Name="viewaccountnameinlist" ReturnType="Collection(AHD16_AMS69_Group2Model.viewaccountnameinlist_Result)" />
+          <FunctionImport Name="sp_viewaccountnameinlist" ReturnType="Collection(AHD16_AMS69_Group2Model.sp_viewaccountnameinlist_Result)" />
+        </EntityContainer>
+        <ComplexType Name="sp_loginexecutive_group2_Result">
+          <Property Type="Int32" Name="loginid" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="userpassword" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="userroleid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_state_group2_Result">
+          <Property Type="Int32" Name="stateid" Nullable="false" />
+          <Property Type="String" Name="statename" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_view_CustomerTable_group2_Result">
+          <Property Type="Int64" Name="CustomerID" Nullable="false" />
+          <Property Type="Int64" Name="AadhaarID" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="String" Name="AddressLine1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AddressLine2" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="State" Nullable="true" />
+          <Property Type="Int32" Name="City" Nullable="true" />
+          <Property Type="Int64" Name="Contact" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="NoofAccounts" Nullable="true" />
+          <Property Type="String" Name="CustomerStatus" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="sp_viewbyid_CustomerTable_group2_Result">
+          <Property Type="Int64" Name="CustomerID" Nullable="false" />
+          <Property Type="Int64" Name="AadhaarID" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="String" Name="AddressLine1" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="AddressLine2" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="State" Nullable="true" />
+          <Property Type="Int32" Name="City" Nullable="true" />
+          <Property Type="Int64" Name="Contact" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="NoofAccounts" Nullable="true" />
+          <Property Type="String" Name="CustomerStatus" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <EntityType Name="accountdropdown_group2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Accounttype" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="addaccount_group2" Relationship="AHD16_AMS69_Group2Model.FK__addaccoun__Accou__2BFE89A6" FromRole="accountdropdown_group2" ToRole="addaccount_group2" />
+        </EntityType>
+        <EntityType Name="addaccount_group2">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int64" />
+          <Property Name="AccountType" Type="Int32" />
+          <Property Name="DepositAmount" Type="Decimal" Precision="12" Scale="0" />
+          <NavigationProperty Name="accountdropdown_group2" Relationship="AHD16_AMS69_Group2Model.FK__addaccoun__Accou__2BFE89A6" FromRole="addaccount_group2" ToRole="accountdropdown_group2" />
+          <NavigationProperty Name="CustomerTable_group2" Relationship="AHD16_AMS69_Group2Model.FK__addaccoun__Custo__2B0A656D" FromRole="addaccount_group2" ToRole="CustomerTable_group2" />
+          <Property Name="AccountStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="transactiontable_group2" Relationship="AHD16_AMS69_Group2Model.FK__transacti__Accou__40058253" FromRole="addaccount_group2" ToRole="transactiontable_group2" />
+        </EntityType>
+        <Association Name="FK__addaccoun__Accou__2BFE89A6">
+          <End Type="AHD16_AMS69_Group2Model.accountdropdown_group2" Role="accountdropdown_group2" Multiplicity="0..1" />
+          <End Type="AHD16_AMS69_Group2Model.addaccount_group2" Role="addaccount_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accountdropdown_group2">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="addaccount_group2">
+              <PropertyRef Name="AccountType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__addaccoun__Custo__2B0A656D">
+          <End Type="AHD16_AMS69_Group2Model.CustomerTable_group2" Role="CustomerTable_group2" Multiplicity="0..1" />
+          <End Type="AHD16_AMS69_Group2Model.addaccount_group2" Role="addaccount_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerTable_group2">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="addaccount_group2">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_view_addaccount_group2_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="sp_viewAccount_group2_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+        </ComplexType>
+        <EntityType Name="transactiontable_group2">
+          <Key>
+            <PropertyRef Name="transactionid" />
+          </Key>
+          <Property Name="transactionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" />
+          <Property Name="AccountType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="typeoftransaction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="beforebalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="afterbalance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="dateoftransaction" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="addaccount_group2" Relationship="AHD16_AMS69_Group2Model.FK__transacti__Accou__40058253" FromRole="transactiontable_group2" ToRole="addaccount_group2" />
+        </EntityType>
+        <Association Name="FK__transacti__Accou__40058253">
+          <End Type="AHD16_AMS69_Group2Model.addaccount_group2" Role="addaccount_group2" Multiplicity="0..1" />
+          <End Type="AHD16_AMS69_Group2Model.transactiontable_group2" Role="transactiontable_group2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="addaccount_group2">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="transactiontable_group2">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_viewCashier_group2_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+          <Property Type="String" Name="AccountStatus" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="cashierViewAccountbyId_group2_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+          <Property Type="String" Name="AccountStatus" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_viewbyAccountID_group2_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+          <Property Type="String" Name="AccountStatus" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_selectCustomerAccountIdforTransfer_group2_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+          <Property Type="String" Name="AccountStatus" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_view_CustomerTable_CONCAT_GROUP2_Result">
+          <Property Type="Int64" Name="CustomerID" Nullable="false" />
+          <Property Type="Int64" Name="AadhaarID" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="444" />
+          <Property Type="Int64" Name="Contact" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CustomerStatus" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="sp_city_group2_Result">
+          <Property Type="Int32" Name="cityid" Nullable="false" />
+          <Property Type="String" Name="cityname" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="sp_printstatement_group2_Result">
+          <Property Type="Int32" Name="transactionid" Nullable="false" />
+          <Property Type="Int64" Name="AccountId" Nullable="true" />
+          <Property Type="String" Name="AccountType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="typeoftransaction" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="amount" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="beforebalance" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="afterbalance" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="dateoftransaction" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_statementbyDate_group2_Result">
+          <Property Type="Int32" Name="transactionid" Nullable="false" />
+          <Property Type="Int64" Name="AccountId" Nullable="true" />
+          <Property Type="String" Name="AccountType" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="typeoftransaction" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="amount" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="beforebalance" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="afterbalance" Nullable="true" Precision="19" />
+          <Property Type="DateTime" Name="dateoftransaction" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_view_CustomerTable_CONCAT_GROUP2_Result1">
+          <Property Type="Int64" Name="CustomerID" Nullable="false" />
+          <Property Type="Int64" Name="AadhaarID" Nullable="false" />
+          <Property Type="String" Name="CustomerName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="445" />
+          <Property Type="Int64" Name="Contact" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CustomerStatus" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="NoofAccounts" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_viewaccounttablewithstatus_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+          <Property Type="String" Name="AccountStatus" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="viewaccountnameinlist_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="String" Name="Accounttype1" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="sp_viewaccountnameinlist_Result">
+          <Property Type="Int64" Name="AccountId" Nullable="false" />
+          <Property Type="Int64" Name="CustomerID" Nullable="true" />
+          <Property Type="Int32" Name="AccountType" Nullable="true" />
+          <Property Type="String" Name="Accounttype1" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="DepositAmount" Nullable="true" Precision="12" Scale="0" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AHD16_AMS69_Group2ModelStoreContainer" CdmEntityContainer="bankEntities">
+          <EntitySetMapping Name="city_group2">
+            <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.city_group2">
+              <MappingFragment StoreEntitySet="city_group2">
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="cityname" ColumnName="cityname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerTable_group2">
+            <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.CustomerTable_group2">
+              <MappingFragment StoreEntitySet="CustomerTable_group2">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AadhaarID" ColumnName="AadhaarID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NoofAccounts" ColumnName="NoofAccounts" />
+                <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loginexecutive_group2">
+            <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.loginexecutive_group2">
+              <MappingFragment StoreEntitySet="loginexecutive_group2">
+                <ScalarProperty Name="loginid" ColumnName="loginid" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+                <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="state_group2">
+            <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.state_group2">
+              <MappingFragment StoreEntitySet="state_group2">
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="statename" ColumnName="statename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_CustomerTable_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_CustomerTable_group2" />
+          <FunctionImportMapping FunctionImportName="sp_loginexecutive_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_loginexecutive_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_loginexecutive_group2_Result">
+                <ScalarProperty Name="loginid" ColumnName="loginid" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+                <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_state_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_state_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_state_group2_Result">
+                <ScalarProperty Name="stateid" ColumnName="stateid" />
+                <ScalarProperty Name="statename" ColumnName="statename" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_view_CustomerTable_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_view_CustomerTable_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_view_CustomerTable_group2_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AadhaarID" ColumnName="AadhaarID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NoofAccounts" ColumnName="NoofAccounts" />
+                <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewbyid_CustomerTable_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewbyid_CustomerTable_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewbyid_CustomerTable_group2_Result">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AadhaarID" ColumnName="AadhaarID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NoofAccounts" ColumnName="NoofAccounts" />
+                <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_deletecustomer_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_deletecustomer_group2" />
+          <FunctionImportMapping FunctionImportName="sp_deletebyid_CustomerTable_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_deletebyid_CustomerTable_group2" />
+          <EntitySetMapping Name="accountdropdown_group2">
+            <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.accountdropdown_group2">
+              <MappingFragment StoreEntitySet="accountdropdown_group2">
+                <ScalarProperty Name="Accounttype" ColumnName="Accounttype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="addaccount_group2">
+            <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.addaccount_group2">
+              <MappingFragment StoreEntitySet="addaccount_group2">
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_addaccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_addaccount_group2" />
+          <FunctionImportMapping FunctionImportName="sp_view_addaccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_view_addaccount_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_view_addaccount_group2_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewAccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewAccount_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewAccount_group2_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_accountTypecheck_gropu2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_accountTypecheck_gropu2" />
+          <FunctionImportMapping FunctionImportName="sp_checkAccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_checkAccount_group2" />
+          <FunctionImportMapping FunctionImportName="sp_checknoofAccounts_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_checknoofAccounts_group2" />
+          <EntitySetMapping Name="transactiontable_group2">
+            <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.transactiontable_group2">
+              <MappingFragment StoreEntitySet="transactiontable_group2">
+                <ScalarProperty Name="dateoftransaction" ColumnName="dateoftransaction" />
+                <ScalarProperty Name="afterbalance" ColumnName="afterbalance" />
+                <ScalarProperty Name="beforebalance" ColumnName="beforebalance" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="typeoftransaction" ColumnName="typeoftransaction" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="transactionid" ColumnName="transactionid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewCashier_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewCashier_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewCashier_group2_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="cashierViewAccountbyId_group2" FunctionName="AHD16_AMS69_Group2Model.Store.cashierViewAccountbyId_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.cashierViewAccountbyId_group2_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DepositAmount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.DepositAmount_group2" />
+          <FunctionImportMapping FunctionImportName="sp_Totaltransactions" FunctionName="AHD16_AMS69_Group2Model.Store.sp_Totaltransactions" />
+          <FunctionImportMapping FunctionImportName="sp_WithdrawAmount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_WithdrawAmount_group2" />
+          <FunctionImportMapping FunctionImportName="sp_Deposit_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_Deposit_group2" />
+          <FunctionImportMapping FunctionImportName="sp_deleteAccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_deleteAccount_group2" />
+          <FunctionImportMapping FunctionImportName="sp_viewbyAccountID_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewbyAccountID_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewbyAccountID_group2_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_forchecknoofaccountbycusId" FunctionName="AHD16_AMS69_Group2Model.Store.sp_forchecknoofaccountbycusId" />
+          <FunctionImportMapping FunctionImportName="sp_forcheckwhichaccounttype" FunctionName="AHD16_AMS69_Group2Model.Store.sp_forcheckwhichaccounttype" />
+          <FunctionImportMapping FunctionImportName="sp_transfer_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_transfer_group2" />
+          <FunctionImportMapping FunctionImportName="sp_selectCustomerAccountIdforTransfer_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_selectCustomerAccountIdforTransfer_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_selectCustomerAccountIdforTransfer_group2_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_city_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_city_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_city_group2_Result">
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="cityname" ColumnName="cityname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_printstatement_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_printstatement_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_printstatement_group2_Result">
+                <ScalarProperty Name="transactionid" ColumnName="transactionid" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="typeoftransaction" ColumnName="typeoftransaction" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="beforebalance" ColumnName="beforebalance" />
+                <ScalarProperty Name="afterbalance" ColumnName="afterbalance" />
+                <ScalarProperty Name="dateoftransaction" ColumnName="dateoftransaction" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_statementbyDate_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_statementbyDate_group2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_statementbyDate_group2_Result">
+                <ScalarProperty Name="transactionid" ColumnName="transactionid" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="typeoftransaction" ColumnName="typeoftransaction" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="beforebalance" ColumnName="beforebalance" />
+                <ScalarProperty Name="afterbalance" ColumnName="afterbalance" />
+                <ScalarProperty Name="dateoftransaction" ColumnName="dateoftransaction" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_view_CustomerTable_CONCAT_GROUP2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_view_CustomerTable_CONCAT_GROUP2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_view_CustomerTable_CONCAT_GROUP2_Result1">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AadhaarID" ColumnName="AadhaarID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+                <ScalarProperty Name="NoofAccounts" ColumnName="NoofAccounts" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewaccounttablewithstatus" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewaccounttablewithstatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewaccounttablewithstatus_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_viewaccountnameinlist" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewaccountnameinlist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewaccountnameinlist_Result">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="Accounttype1" ColumnName="Accounttype1" />
+                <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

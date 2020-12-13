@@ -1,0 +1,112 @@
+﻿@model Retail_Banking_Group2.Models.addaccount_group2
+
+@{
+    ViewBag.Title = "addaccounts";
+    Layout = "~/Views/Shared/layoutafterexecutive.cshtml";
+}
+@*<script src=" ~/Models/Scripts/jquery-1.10.2.min.js"></script>*@
+@*<script src="https://ajax.aspnetcdn.com/ajax/Jquery/Jquery-3.2.1.min.Js"></script>*@
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            debugger;
+            var ac = $("#AccountType").val();
+            alert(ac);
+               if ($("#AccountType").val() == 1)
+               {
+                   if(!$("DepositAmount").val()>500) 
+                       if (!$("DepositAmount").val() < 5000)
+
+                         alert("Enter amount in 500 and 50000");
+               }
+               if ($("#AccountType").val() == "current") {
+                   if (!$("DepositAmount").val() > 100)
+                       if (!$("DepositAmount").val() < 1000)
+
+                           alert("Enter amount in 100 and 1000");
+               }
+
+             });
+        });
+
+</script>
+<a href="javascript:void(0);" onclick="history.go(-1);">Back</a>
+<h2 style="text-align:center;color:navy">Add accounts</h2>
+
+<h2 style="text-align:center;color:lightgreen">@ViewBag.Message1</h2>
+
+
+
+@*<script type="text/javascript">
+    function myFunction()
+    {
+        var x = document.getElementById("AccountType");
+        if(x=="current")
+        {
+            document.getElementById("DepositAmount").min = 1000;
+            document.getElementById("DepositAmount").max = 10000;
+            document.getElementById("DepositAmount").readOnly = false;
+        }
+        if(x=="savings")
+        {
+            document.getElementById("DepositAmount").min = 500;
+            document.getElementById("DepositAmount").max = 5000;
+            document.getElementById("DepositAmount").readOnly = false;
+        }
+    }
+    </script>*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>addaccount_group2</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.AccountId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AccountId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => @Session["CustomerId"], new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.AccountType, new SelectList(ViewBag.Message, "Value", "Text"), "--Select--", new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepositAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DepositAmount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DepositAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" id="submit" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to List", "ListCustomer")
+</div>*@
+
+<script src="~/Models/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Models/Scripts/jquery.validate.min.js"></script>
+<script src="~/Models/Scripts/jquery.validate.unobtrusive.min.js"></script>

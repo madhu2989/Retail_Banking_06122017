@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AHD16_AMS69_Group2ModelStoreContainer" CdmEntityContainer="bankEntities">
+    <EntitySetMapping Name="city_group2">
+      <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.city_group2">
+        <MappingFragment StoreEntitySet="city_group2">
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerTable_group2">
+      <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.CustomerTable_group2">
+        <MappingFragment StoreEntitySet="CustomerTable_group2">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AadhaarID" ColumnName="AadhaarID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NoofAccounts" ColumnName="NoofAccounts" />
+          <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="loginexecutive_group2">
+      <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.loginexecutive_group2">
+        <MappingFragment StoreEntitySet="loginexecutive_group2">
+          <ScalarProperty Name="loginid" ColumnName="loginid" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+          <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="state_group2">
+      <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.state_group2">
+        <MappingFragment StoreEntitySet="state_group2">
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="statename" ColumnName="statename" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_CustomerTable_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_CustomerTable_group2" />
+    <FunctionImportMapping FunctionImportName="sp_loginexecutive_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_loginexecutive_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_loginexecutive_group2_Result">
+          <ScalarProperty Name="loginid" ColumnName="loginid" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="userpassword" ColumnName="userpassword" />
+          <ScalarProperty Name="userroleid" ColumnName="userroleid" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_state_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_state_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_state_group2_Result">
+          <ScalarProperty Name="stateid" ColumnName="stateid" />
+          <ScalarProperty Name="statename" ColumnName="statename" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_view_CustomerTable_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_view_CustomerTable_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_view_CustomerTable_group2_Result">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AadhaarID" ColumnName="AadhaarID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NoofAccounts" ColumnName="NoofAccounts" />
+          <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_viewbyid_CustomerTable_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewbyid_CustomerTable_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewbyid_CustomerTable_group2_Result">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AadhaarID" ColumnName="AadhaarID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NoofAccounts" ColumnName="NoofAccounts" />
+          <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_deletecustomer_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_deletecustomer_group2" />
+    <FunctionImportMapping FunctionImportName="sp_deletebyid_CustomerTable_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_deletebyid_CustomerTable_group2" />
+    <EntitySetMapping Name="accountdropdown_group2">
+      <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.accountdropdown_group2">
+        <MappingFragment StoreEntitySet="accountdropdown_group2">
+          <ScalarProperty Name="Accounttype" ColumnName="Accounttype" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="addaccount_group2">
+      <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.addaccount_group2">
+        <MappingFragment StoreEntitySet="addaccount_group2">
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_addaccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_addaccount_group2" />
+    <FunctionImportMapping FunctionImportName="sp_view_addaccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_view_addaccount_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_view_addaccount_group2_Result">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_viewAccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewAccount_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewAccount_group2_Result">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_accountTypecheck_gropu2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_accountTypecheck_gropu2" />
+    <FunctionImportMapping FunctionImportName="sp_checkAccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_checkAccount_group2" />
+    <FunctionImportMapping FunctionImportName="sp_checknoofAccounts_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_checknoofAccounts_group2" />
+    <EntitySetMapping Name="transactiontable_group2">
+      <EntityTypeMapping TypeName="AHD16_AMS69_Group2Model.transactiontable_group2">
+        <MappingFragment StoreEntitySet="transactiontable_group2">
+          <ScalarProperty Name="dateoftransaction" ColumnName="dateoftransaction" />
+          <ScalarProperty Name="afterbalance" ColumnName="afterbalance" />
+          <ScalarProperty Name="beforebalance" ColumnName="beforebalance" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="typeoftransaction" ColumnName="typeoftransaction" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="transactionid" ColumnName="transactionid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_viewCashier_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewCashier_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewCashier_group2_Result">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="cashierViewAccountbyId_group2" FunctionName="AHD16_AMS69_Group2Model.Store.cashierViewAccountbyId_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.cashierViewAccountbyId_group2_Result">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DepositAmount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.DepositAmount_group2" />
+    <FunctionImportMapping FunctionImportName="sp_Totaltransactions" FunctionName="AHD16_AMS69_Group2Model.Store.sp_Totaltransactions" />
+    <FunctionImportMapping FunctionImportName="sp_WithdrawAmount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_WithdrawAmount_group2" />
+    <FunctionImportMapping FunctionImportName="sp_Deposit_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_Deposit_group2" />
+    <FunctionImportMapping FunctionImportName="sp_deleteAccount_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_deleteAccount_group2" />
+    <FunctionImportMapping FunctionImportName="sp_viewbyAccountID_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewbyAccountID_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewbyAccountID_group2_Result">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_forchecknoofaccountbycusId" FunctionName="AHD16_AMS69_Group2Model.Store.sp_forchecknoofaccountbycusId" />
+    <FunctionImportMapping FunctionImportName="sp_forcheckwhichaccounttype" FunctionName="AHD16_AMS69_Group2Model.Store.sp_forcheckwhichaccounttype" />
+    <FunctionImportMapping FunctionImportName="sp_transfer_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_transfer_group2" />
+    <FunctionImportMapping FunctionImportName="sp_selectCustomerAccountIdforTransfer_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_selectCustomerAccountIdforTransfer_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_selectCustomerAccountIdforTransfer_group2_Result">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_city_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_city_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_city_group2_Result">
+          <ScalarProperty Name="cityid" ColumnName="cityid" />
+          <ScalarProperty Name="cityname" ColumnName="cityname" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_printstatement_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_printstatement_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_printstatement_group2_Result">
+          <ScalarProperty Name="transactionid" ColumnName="transactionid" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="typeoftransaction" ColumnName="typeoftransaction" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="beforebalance" ColumnName="beforebalance" />
+          <ScalarProperty Name="afterbalance" ColumnName="afterbalance" />
+          <ScalarProperty Name="dateoftransaction" ColumnName="dateoftransaction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_statementbyDate_group2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_statementbyDate_group2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_statementbyDate_group2_Result">
+          <ScalarProperty Name="transactionid" ColumnName="transactionid" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="typeoftransaction" ColumnName="typeoftransaction" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="beforebalance" ColumnName="beforebalance" />
+          <ScalarProperty Name="afterbalance" ColumnName="afterbalance" />
+          <ScalarProperty Name="dateoftransaction" ColumnName="dateoftransaction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_view_CustomerTable_CONCAT_GROUP2" FunctionName="AHD16_AMS69_Group2Model.Store.sp_view_CustomerTable_CONCAT_GROUP2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_view_CustomerTable_CONCAT_GROUP2_Result1">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AadhaarID" ColumnName="AadhaarID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+          <ScalarProperty Name="NoofAccounts" ColumnName="NoofAccounts" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_viewaccounttablewithstatus" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewaccounttablewithstatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewaccounttablewithstatus_Result">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_viewaccountnameinlist" FunctionName="AHD16_AMS69_Group2Model.Store.sp_viewaccountnameinlist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="AHD16_AMS69_Group2Model.sp_viewaccountnameinlist_Result">
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="Accounttype1" ColumnName="Accounttype1" />
+          <ScalarProperty Name="DepositAmount" ColumnName="DepositAmount" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

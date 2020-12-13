@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Retail Banking</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @*<font style="margin-left:10px;margin-top:1px;font-size:50px;color:white;position:fixed"> STANDARD BANK</font>*@
+
+  
+</head>
+
+<body style="background-color:white;background-image:url(http://www.healingandtransformation.com/wp-content/uploads/2014/05/bigstock-Sky-and-clouds-background-26443844.jpg);background-size:cover;background-repeat:no-repeat">
+
+    <nav class="navbar navbar-default " style="margin-top:-50px;margin-left:0px;background-color:black;">
+        @*<div class="container">*@
+        <div class="navbar-header" style="background-color:black">
+
+            <img src=" ~/Content/logo-edited.jpg" alt="online banking " ;width="80" ; height="80" ; style="margin-top:5px;margin-left:5px">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right" style="margin-left:850px;color:white">
+
+                    <li style="color:black;font-size:20px">
+                        @Html.ActionLink("About", "aboutbank", "aboutbank")
+                    </li>
+                    <li style="text-emphasis-color:black;font-size:20px">@Html.ActionLink("Faq", "faqbank", "faqbank")</li>
+                    <li style="text-emphasis-color:black;font-size:20px">@Html.ActionLink("Home", "frontpage", "frontpage") </li>
+                    <li style="text-emphasis-color:black;font-size:20px">
+                        @Html.ActionLink("Login", "login", "login")
+                    </li>
+                    @*<li style="background-color:White;font-size:20px"><a href="~/Views/Shared/loginlayout.cshtml">Login</a></li>*@
+                </ul>
+            </div>
+            <div style="margin-top:-130px;margin-left:150px">
+
+                <h1 style="color:white">STANDARD BANK</h1>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</body>
+@RenderBody()
+
+    <div class="container-fluid bg-grey" style="margin-left:24px;">
+        <h2 class="text-center" style="color:white">CONTACT</h2>
+        <div class="row">
+            <div class="col-sm-5">
+                <h4 style="color:white">Contact us and we'll get back to you within 24 hours.</h4>
+                <h2 style="color:white">INDIA</h2>
+                <h2 style="color:white"> 088-66-55-44</h2>
+                <h2 style="color:white"> myemail@bank.com</h2>
+            </div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                    </div>
+                </div>
+                <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
+                <div class="row">
+                    <div class="col-sm-12 form-group" style="margin-right:20px">
+                        <button class="#" type="submit">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</html>

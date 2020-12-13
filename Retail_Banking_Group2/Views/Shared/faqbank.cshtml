@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<font style="margin-left:10px;margin-top:1px;font-size:50px;color:white;position:fixed"> STANDARD BANK</font>*@
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Retail Banking</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+
+    <body style="background-color:white;background-image:url(http://www.healingandtransformation.com/wp-content/uploads/2014/05/bigstock-Sky-and-clouds-background-26443844.jpg);background-size:cover;background-repeat:no-repeat">
+</head>
+</body>
+@RenderBody()
+<nav class="navbar navbar-default " style="margin-top:-50px;margin-left:0px;background-color:black;">
+    @*<div class="container">*@
+    <div class="navbar-header" style="background-color:black">
+
+        <img src=" ~/Content/logo-edited.jpg" alt="online banking " ;width="80" ; height="80" ; style="margin-top:5px;margin-left:5px">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right" style="margin-left:850px;color:white">
+
+                <li style="color:black;font-size:20px">
+                    @Html.ActionLink("About", "aboutbank", "aboutbank")
+                </li>
+                <li style="text-emphasis-color:black;font-size:20px">@Html.ActionLink("Home", "frontpage", "frontpage")</li>
+                <li style="text-emphasis-color:black;font-size:20px">@Html.ActionLink("Contact", "contactbank", "contactbank") </li>
+                <li style="text-emphasis-color:black;font-size:20px">
+                    @Html.ActionLink("Login", "login", "login")
+                </li>
+                @*<li style="background-color:White;font-size:20px"><a href="~/Views/Shared/loginlayout.cshtml">Login</a></li>*@
+            </ul>
+        </div>
+        <div style="margin-top:-130px;margin-left:150px">
+
+            <h1 style="color:white">STANDARD BANK</h1>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+</body>
+
+<div class="container-fluid" style="margin-top:100px">
+    <div class="text-center">
+        @*<h2 style="margin-top:100px">STANDARD BANK</h2>*@
+        <h4 style="color:white">Commonly Asked Question</h4>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1>LOANS</h1>
+                </div>
+                <div class="panel-body">               
+                </div>
+                <div class="panel-footer">
+                    <h3>8.99%</h3>
+                    <h4>per month</h4>
+                    <button class="btn btn-lg">apply</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1>Cheque</h1>
+                </div>
+                <div class="panel-body">
+                    <p><strong>how to get a new  cheque book</strong></p>
+                    @*<p><strong>25</strong> Ipsum</p>
+                    <p><strong>10</strong> Dolor</p>
+                    <p><strong>5</strong> Sit</p>
+                    <p><strong>Endless</strong> Amet</p>*@
+                </div>
+                <div class="panel-footer">
+                    <h3>Fill the last page and submit it to bank or apply below</h3>
+                    <h4>No Extra charges</h4>
+                    <button class="btn btn-lg">apply</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default text-center">
+                <div class="panel-heading">
+                    <h1>I asked the bank to lower the fees on my account. It refused. Can it do that?</h1>
+                </div>
+                <div class="panel-body">
+                    <p><strong>It is directed by RBI</strong></p>
+                    @*<p><strong>50</strong> Ipsum</p>
+                    <p><strong>25</strong> Dolor</p>
+                    <p><strong>10</strong> Sit</p>
+                    <p><strong>Endless</strong> Amet</p>*@
+                </div>
+                <div class="panel-footer">
+                    <h3>Updated</h3>
+                    <h4>asper RBI Directions</h4>
+                    <button class="btn btn-lg">Different Questions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <body>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs_cloudflare.com/ajax/libs/popper_js/1.12.6/umd/popper.min.js"></script>
+        <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+        <script srx="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<body style="background-color:white;background-image:url('https://i.pinimg.com/originals/c7/d9/e9/c7d9e976b4df9af7771decd27559282f.jpg');background-size:cover;background-repeat:no-repeat">
+
+    <nav class="navbar navbar-default" style="background-color:black">
+        <font style="margin-left:10px;margin-left:10px;font-size:50px;color:white"> STANDARD BANK</font>
+        <div class="container-fluid">
+
+            <ul class="nav navbar-nav" style="margin-left:850px">
+                <li style="color:white;font-size:20px">
+                    @Html.ActionLink("Home", "cashieroperation", "cashieroperation")
+                </li>
+
+                @*<li style="color:white;font-size:20px">
+                        @Html.ActionLink("Ministatement", "PrintStatement", "Cashier")
+                    </li>
+                    <li style="color:white;font-size:20px">
+                        @Html.ActionLink("View", "cashierView", "Cashier")
+                    </li>*@
+                <li style="color:white;font-size:20px">
+                    @Html.ActionLink("Logout", "logout", "login")
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    @RenderBody()
+    @*<<div style="margin-top:50px;margin-left:500px">
+            <img src="~/Content/nre-fixed-deposit.jpg" alt="online banking" width="400" height="400">
+        </div>*@
+    <footer style="margin-left:0px;margin-top:0px;background-color:black;margin-top:250px;">
+
+        <div style="margin-left:50px;font-size:larger">
+            <a href="#"><span class="label label-info">Branch Details</span></a>
+            <a href="#"><span class="label label-info">IFSC Codes</span></a>
+            <a href="#"><span class="label label-info">Credit cards</span></a>
+            <a href="#"><span class="label label-info">Interest rates</span></a>
+            @*| <i class="icon-user"></i> <a href="#">Admin</a>*@
+            <div style="margin-top:10px">
+                <i class="icon-share"></i> <a href="#"> <h4 style="margin-left:700px;color:white;margin-top:-25px">Contact us 24*7 on 08008-88558855</h4></a>
+                <h3 style="color:white">copyright *standartbanking.com Group_2</h3>
+            </div>
+            </h2>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,111 @@
+﻿@model Retail_Banking_Group2.Models.sp_selectCustomerAccountIdforTransfer_group2_Result
+
+@{
+    ViewBag.Title = "Transfer";
+    Layout = "~/Views/Shared/layoutafteroperation.cshtml";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+    
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+          
+            <div class="col-md-10">
+              
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td>
+                   &nbsp;@Html.Label("Source Account")
+                </td>
+                <td>
+                    &nbsp;&nbsp;@Session["SAccId"]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.AccountId, "Destination Account", htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.AccountId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                 &nbsp;&nbsp;@Html.Label("Source Account")
+                </td>
+                <td>
+          &nbsp;&nbsp;&nbsp; @Session["SAccType"]
+                </td>
+            </tr>
+            <tr>
+                <td>
+            &nbsp;&nbsp; @Html.Label("Source Account Balance")
+                </td>
+                <td>
+                    &nbsp;&nbsp; @Session["SAccBal"]
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.CustomerID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.AccountType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AccountType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AccountType, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepositAmount,"Transfer Amount", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-1">
+                @Html.EditorFor(model => model.DepositAmount, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
+                @Html.ValidationMessageFor(model => model.DepositAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.AccountStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AccountStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AccountStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Transfer" class="btn btn-success" />
+            @Html.ActionLink("View", "cashierView")
+        </div>
+        
+    </div>
+   
+}
+
+<div>
+    @Html.ActionLink("Back to List", "cashierView")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
